@@ -30,7 +30,29 @@ public class PairOfSum {
             }
             else{
                 low++;
+                //9949292183
             }
+        }
+    }
+
+    public static void subArraySum(int[] a,int n,int sum){
+        int curr_sum = a[0];
+        int start =0;
+        for(int i=1;i<a.length;i++){
+
+            //Check if the curr_sum exceeds the required sum if
+                //If it exceeds then remove the trailing element
+            while(curr_sum > sum && start < i-1){
+                curr_sum = curr_sum - a[start];
+                start++;
+            }
+
+            if(curr_sum == sum){
+                System.out.println("Sum found between indexes " + start
+                        + " and " + (i-1));
+            }
+            else
+                curr_sum = curr_sum + a[i];
         }
     }
 
@@ -39,5 +61,9 @@ public class PairOfSum {
         int sum = 6;
         PairOfSum.usingSet(a,a.length,sum);
         PairOfSum.usingSort(a,a.length,sum);
+
+        int[] b = {15, 2, 4, 8, 9, 5, 10, 23};
+        PairOfSum.subArraySum(b, b.length, 23);
+
     }
 }
